@@ -181,9 +181,9 @@ uint16_t lego_getData(uint8_t *buf, uint32_t buflen)
 		BlobA *max;
 		max = g_blobs->getMaxBlob(c-0x50, &numBlobs);
 		if (max==0)
-			memset(buf, 0, 5);
+			memset(buf, 0, 6);
 		else if (max==(BlobA *)-1 || error)
-			memset(buf, -1, 5);
+			memset(buf, -1, 6);
 		else
 		{
 			width = max->m_right - max->m_left;
@@ -197,9 +197,10 @@ uint16_t lego_getData(uint8_t *buf, uint32_t buflen)
 			buf[3] = temp; // width
 			temp = (height*1262)>>10;
 			buf[4] = temp; // height
+			// buf[5] = max->m_tracker;
 		}
 #endif
-		return 5;
+		return 6;
 	}
 	else if (c==0x58)
 	{
